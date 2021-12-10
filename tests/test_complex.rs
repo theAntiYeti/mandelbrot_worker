@@ -14,7 +14,7 @@ fn test_multiplcation_1() {
         re: 0.0,
         im: 2.0,
     };
-    assert_eq!(expected, multiply(z,z))
+    assert_eq!(expected, complex::multiply(z,z))
 }
 
 #[test]
@@ -33,5 +33,5 @@ fn test_multiplcation_2() {
         re: 25.0,
         im: 0.0,
     };
-    assert_eq!(expected, multiply(z, w))
+    assert_eq!(expected, complex::multiply(z, w))
 }
