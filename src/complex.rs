@@ -1,6 +1,6 @@
 /// Complex numbers and complex number operations
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Complex {
     pub re: f64,
     pub im: f64,
