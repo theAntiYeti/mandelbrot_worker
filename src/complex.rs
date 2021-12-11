@@ -14,14 +14,6 @@ pub fn multiply(z: Complex, w: Complex) -> Complex {
     }
 }
 
-/// Take a complex number and return the conjugate
-pub fn conjugate(z: Complex) -> Complex {
-    Complex {
-        re: z.re,
-        im: -z.im,
-    }
-}
-
 /// Take two complex numbers and add them
 pub fn add(z: Complex, w: Complex) -> Complex {
     Complex {
