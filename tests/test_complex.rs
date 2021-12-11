@@ -2,7 +2,6 @@ use mandelbrot_worker::complex;
 
 use complex::Complex;
 use complex::multiply;
-use complex::conjugate;
 use complex::norm_sq;
 
 /* Test Multiplication */
@@ -37,22 +36,6 @@ fn test_multiplcation_2() {
         im: 0.0,
     };
     assert_eq!(expected, multiply(z, w))
-}
-
-/* Test conjugate */
-#[test]
-fn test_conjugation() {
-    let z = Complex {
-        re: 7.5,
-        im: 2.4,
-    };
-
-    let expected = Complex {
-        re: 7.5,
-        im: -2.4,
-    };
-    
-    assert_eq!(expected, conjugate(z))
 }
 
 /* Test norm square */
