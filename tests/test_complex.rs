@@ -2,7 +2,6 @@ use mandelbrot_worker::complex;
 
 use complex::Complex;
 use complex::multiply;
-use complex::conjugate;
 use complex::norm_sq;
 
 /* Test Multiplication */
