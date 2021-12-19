@@ -1,25 +1,30 @@
+use warp::{Filter, Rejection, Reply};
+
 mod complex;
 use complex::Complex;
 
 mod generate;
 
-fn main() {
-    let top_left = Complex {
-        re: -1.0,
-        im:  1.0,
-    };
+mod messages;
+mod handlers;
 
-    let bottom_right = Complex {
-        re:  0.0,
-        im:  0.0,
-    };
+type Result<T> = std::result::Result<T, Rejection>;
 
-    let grid = generate::create_escape_grid(top_left, bottom_right, 150, 150, 99);
+#[tokio::main]
+async fn main() {
+    let health_route = warp::path!("health").and_then(health_handler);
 
-    for i in 0..150 {
-        for j in 0..150 {
-            print!("{:>2} ", grid[j][i]);
-        }
-        println!("");
-    }
+    let mdb_route = warp::path!("mdb")
+        .and(warp::get())
+        .and(warp::body::json())
+        .and_then(handlers::generate_mandelbrot_render);
+    
+    let routes = health_route.or(mdb_route).with(warp::cors().allow_any_origin());
+
+    println!("Started server at localhost:8000");
+    warp::serve(routes).run(([0, 0, 0, 0], 8000)).await;
+}
+
+async fn health_handler() -> Result<impl Reply> {
+    Ok("OK")
 }
